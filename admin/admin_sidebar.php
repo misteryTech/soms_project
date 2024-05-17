@@ -25,6 +25,23 @@
 <div class="sidebar-heading">
     Interface
 </div>
+<!-- Nav Item - Pages Collapse Menu -->
+<li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#studentData"
+        aria-expanded="true" aria-controls="studentData">
+        <i class="fa fa-file-image-o" aria-hidden="true"></i>
+        <span>Student Details</span>
+    </a>
+    <div id="studentData" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Students:</h6>
+            <a class="collapse-item" href="student_registration_page.php">Student Registration</a>
+            <a class="collapse-item" href="student_information_page_data.php">Students Data</a>
+
+        </div>
+    </div>
+</li>
+
 
 <!-- Nav Item - Pages Collapse Menu -->
 <li class="nav-item">
@@ -33,11 +50,12 @@
         <i class="fa fa-file-image-o" aria-hidden="true"></i>
         <span>Events Gallery</span>
     </a>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">z
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Events:</h6>
             <a class="collapse-item" href="gallery_events_page.php">View Gallery</a>
             <a class="collapse-item" href="gallery_events_page_registration.php">Add Events Gallery</a>
+            <a class="collapse-item" href="calendar_event_page.php">Calendar Of Events</a>
         </div>
     </div>
 </li>
@@ -47,17 +65,15 @@
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
         aria-expanded="true" aria-controls="collapseUtilities">
         <i class="fas fa-fw fa-wrench"></i>
-        <span>Utilities</span>
+        <span>Organization Details</span>
     </a>
     <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
         data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Utilities:</h6>
-            <a class="collapse-item" href="utilities-color.html">Colors</a>
-            <a class="collapse-item" href="utilities-border.html">Borders</a>
-            <a class="collapse-item" href="utilities-animation.html">Animations</a>
-            <a class="collapse-item" href="utilities-other.html">Other</a>
-        </div>
+            <h6 class="collapse-header">Organization Details:</h6>
+            <a class="collapse-item" href="organization_page.php">Organization Registration</a>
+            <a class="collapse-item" href="utilities-border.html">Organization Types</a>
+
     </div>
 </li>
 
@@ -70,6 +86,13 @@
 </div>
 
 <!-- Nav Item - Pages Collapse Menu -->
+<!-- Nav Item - Charts -->
+<li class="nav-item">
+    <a class="nav-link" href="organization_page.php">
+        <i class="fas fa-fw fa-chart-area"></i>
+        <span>Organization</span></a>
+</li>
+
 
 
 <!-- Nav Item - Charts -->
