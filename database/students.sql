@@ -11,7 +11,7 @@
  Target Server Version : 100428 (10.4.28-MariaDB)
  File Encoding         : 65001
 
- Date: 17/05/2024 15:18:39
+ Date: 18/05/2024 16:53:35
 */
 
 SET NAMES utf8mb4;
@@ -34,11 +34,12 @@ CREATE TABLE `students`  (
   `dob` date NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of students
 -- ----------------------------
 INSERT INTO `students` VALUES (1, '123123', 'asdasd', '$2y$10$4CVyrpP7W83YBjEqOB3lQu1xsZ6NMzgf49ud8IjRbuCyIlk0u9F0m', 'Reymark', 'Escalante', 'ASD@GMAIL.COMs', '123sasd', 'asd', '2024-05-17', '2024-05-17 14:17:01');
+INSERT INTO `students` VALUES (3, '123123', 'admin', '$2y$10$0Px9m6MKFG4qH7hrn1Ok1Ol8WpHpp5X4PQzpEdCxNjuq3RbgEyRtq', 'Starbrigh', 'Gensan', 'starbrightgensan2023@gmail.com', '09399213074', ' Pres Quirino Ave', '2024-05-31', '2024-05-18 14:36:41');
 
 SET FOREIGN_KEY_CHECKS = 1;

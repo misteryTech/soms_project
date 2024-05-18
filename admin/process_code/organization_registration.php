@@ -2,48 +2,55 @@
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $studentName = htmlspecialchars($_POST['studentName']);
-    $studentEmail = htmlspecialchars($_POST['studentEmail']);
-    $studentPhone = htmlspecialchars($_POST['studentPhone']);
-    $studentGrade = htmlspecialchars($_POST['studentGrade']);
-    $orgName = htmlspecialchars($_POST['orgName']);
-    $personalStatement = htmlspecialchars($_POST['personalStatement']);
+    $studentId = $_POST['studentName'];
+    $studentEmail = $_POST['studentEmail'];
+    $studentPhone = $_POST['studentPhone'];
+    $studentGrade = $_POST['studentGrade'];
+    $orgName = $_POST['orgName'];
+    $orgType = $_POST['orgType'];
+    $role = $_POST['role'];
+    $personalStatement = $_POST['personalStatement'];
+ // Database connection parameters
+ $servername = "localhost";
+ $username = "root";
+ $password = "";
+ $dbname = "soms_db";
 
-    // Database connection parameters
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "soms_db";
+ // Create connection
+ $connection = new mysqli($servername, $username, $password, $dbname);
 
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
+ // Check connection
+ if ($connection->connect_error) {
+     die("Connection failed: " . $connection->connect_error);
+ }
 
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
 
-    $sql = "INSERT INTO registrations (student_name, student_email, student_phone, student_grade, organization_name, personal_statement) VALUES (?, ?, ?, ?, ?, ?)";
-    $stmt = $conn->prepare($sql);
+ // Sanitize data (optional but recommended)
+ $studentId = mysqli_real_escape_string($connection, $studentId);
+ $studentEmail = mysqli_real_escape_string($connection, $studentEmail);
+ $studentPhone = mysqli_real_escape_string($connection, $studentPhone);
+ $studentGrade = mysqli_real_escape_string($connection, $studentGrade);
+ $orgName = mysqli_real_escape_string($connection, $orgName);
+ $orgType = mysqli_real_escape_string($connection, $orgType);
+ $role = mysqli_real_escape_string($connection, $role);
+ $personalStatement = mysqli_real_escape_string($connection, $personalStatement);
 
-    if ($stmt) {
-        $stmt->bind_param("ssssss", $studentName, $studentEmail, $studentPhone, $studentGrade, $orgName, $personalStatement);
 
-        if ($stmt->execute()) {
-            $_SESSION['message'] = "Registration submitted successfully";
-            $_SESSION['message_type'] = "alert-success";
-        } else {
-            $_SESSION['message'] = "Error: " . $stmt->error;
-            $_SESSION['message_type'] = "alert-danger";
-        }
+    // Perform insert query
+    $insertQuery = "INSERT INTO registrations (student_id, student_email, student_phone, student_grade, organization_name, organization_type, role, personal_statement)
+                    VALUES ('$studentId', '$studentEmail', '$studentPhone', '$studentGrade', '$orgName', '$orgType', '$role', '$personalStatement')";
 
-        $stmt->close();
+    if (mysqli_query($connection, $insertQuery)) {
+        $_SESSION['message'] = "Registration submitted successfully";
+        $_SESSION['message_type'] = "alert-success";
     } else {
-        $_SESSION['message'] = "Error preparing statement: " . $conn->error;
+        $_SESSION['message'] = "Error: " . mysqli_error($connection);
         $_SESSION['message_type'] = "alert-danger";
     }
 
-    $conn->close();
+
+
+    $connection->close();
 
     header("Location: ../organization_page.php");
     exit();

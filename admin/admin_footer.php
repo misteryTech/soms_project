@@ -62,6 +62,7 @@
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
             <!-- End of Main Content -->
             <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
             <script>
@@ -79,6 +80,63 @@
         $(document).ready(function() {
             $('#studentTable').DataTable();
         });
+
+
+        $(document).ready(function() {
+            $('#studentName').select2({
+                placeholder: "Select a student",
+                allowClear: true
+            });
+        });
+
+
+
+
+     // Wait for the document to be fully loaded
+     document.addEventListener("DOMContentLoaded", function () {
+        // Handle click event for "Assign Multiple Students" button
+        document.getElementById("assignMultipleStudentsBtn").addEventListener("click", function () {
+            // Clear any existing options in the select element
+            var selectElement = document.getElementById("studentList");
+            selectElement.innerHTML = "";
+
+            // Fetch student names from the server using AJAX or use existing data
+            // For demonstration purposes, let's assume we have an array of student names
+            var students = [
+                { id: 1, name: "John Doe" },
+                { id: 2, name: "Jane Smith" },
+                { id: 3, name: "Alice Johnson" }
+                // Add more student data as needed
+            ];
+
+            // Populate the select element with student names
+            students.forEach(function (student) {
+                var option = document.createElement("option");
+                option.value = student.id;
+                option.textContent = student.name;
+                selectElement.appendChild(option);
+            });
+
+            // Show the modal
+            $("#assignMultipleStudentsModal").modal("show");
+        });
+
+        // Handle click event for "Assign Students" button inside the modal
+        document.getElementById("assignStudentsBtn").addEventListener("click", function () {
+            // Get selected student IDs and role from the form
+            var studentIds = Array.from(document.getElementById("studentList").selectedOptions).map(option => option.value);
+            var role = document.getElementById("role").value;
+
+            // Perform any additional processing or validation as needed
+            // For example, you can send the selected data to the server using AJAX
+
+            // Close the modal
+            $("#assignMultipleStudentsModal").modal("hide");
+        });
+    });
+
+
+
     </script>
 
 

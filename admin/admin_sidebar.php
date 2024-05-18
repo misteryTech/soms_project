@@ -71,8 +71,9 @@
         data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Organization Details:</h6>
-            <a class="collapse-item" href="organization_page.php">Organization Registration</a>
-            <a class="collapse-item" href="utilities-border.html">Organization Types</a>
+            <a class="collapse-item" href="organization_page.php">Org Student Registration</a>
+            <a class="collapse-item" href="organization_information_page_view.php">Org Student Data</a>
+            <a class="collapse-item" href="organization_registration_page.php">Organization Registration</a>
 
     </div>
 </li>

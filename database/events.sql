@@ -11,7 +11,7 @@
  Target Server Version : 100428 (10.4.28-MariaDB)
  File Encoding         : 65001
 
- Date: 16/05/2024 16:26:51
+ Date: 18/05/2024 16:53:09
 */
 
 SET NAMES utf8mb4;
@@ -29,7 +29,7 @@ CREATE TABLE `events`  (
   `image_path` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of events
@@ -41,5 +41,6 @@ INSERT INTO `events` VALUES (4, 'asd', 'asd', '2024-05-17', '', '2024-05-16 16:1
 INSERT INTO `events` VALUES (5, 'asd', 'asd', '2024-05-17', '', '2024-05-16 16:12:15');
 INSERT INTO `events` VALUES (6, 'asd', 'asd', '2024-05-16', '', '2024-05-16 16:12:54');
 INSERT INTO `events` VALUES (7, 'asd', 'asd', '2024-05-16', 'uploads/Asset 1.png', '2024-05-16 16:21:51');
+INSERT INTO `events` VALUES (8, 'Mistery Tech', 'Meeting with the boss', '2024-05-18', 'uploads/1705311630014.jpg', '2024-05-17 13:34:12');
 
 SET FOREIGN_KEY_CHECKS = 1;
