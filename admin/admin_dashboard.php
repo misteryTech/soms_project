@@ -1,12 +1,19 @@
 
 
 
-<?php 
+<?php
 include("admin_header.php");
 
+session_start();
 include("../include/connection.php");
 
 // Check if student is logged in
+if (!isset($_SESSION['student_id'])) {
+    $_SESSION['error'] = "You must be logged in to view this page.";
+    header("Location: ../login.php");
+    exit();
+}
+
 
 ?>
 
@@ -15,7 +22,7 @@ include("../include/connection.php");
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <?php 
+        <?php
         include("admin_sidebar.php");
         ?>
 
@@ -25,15 +32,15 @@ include("../include/connection.php");
             <!-- Main Content -->
             <div id="content">
 
-                <?php 
+                <?php
                 include("admin_topbar.php");
                 ?>
 
                 <!-- Begin Page Content -->
-                
+
                 <div class="container-fluid">
 
-                
+
 
                     <!-- Page Heading -->
                     <!--<div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -57,11 +64,11 @@ include("../include/connection.php");
                                                         $query= mysqli_query($connection,"SELECT * FROM STUDENTS");
 
                                                         $count_row_student = mysqli_num_rows($query);
-                                                        
+
                                                         echo $count_row_student;
                                                     ?>
 
-                                                    
+
                                             </div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">Students</div>
                                         </div>
@@ -84,7 +91,7 @@ include("../include/connection.php");
                                                         $query= mysqli_query($connection,"SELECT * FROM organizations");
 
                                                         $count_row_organization = mysqli_num_rows($query);
-                                                        
+
                                                         echo $count_row_organization    ;
                                                     ?>
 
@@ -113,7 +120,7 @@ include("../include/connection.php");
                                                         $query= mysqli_query($connection,"SELECT * FROM registrations");
 
                                                         $count_row_registrations = mysqli_num_rows($query);
-                                                        
+
                                                         echo $count_row_registrations    ;
                                                     ?>
 
@@ -152,7 +159,7 @@ include("../include/connection.php");
                                                         $query= mysqli_query($connection,"SELECT * FROM events");
 
                                                         $count_row_events = mysqli_num_rows($query);
-                                                        
+
                                                         echo $count_row_events    ;
                                                     ?>
                                             </div>
@@ -166,14 +173,14 @@ include("../include/connection.php");
                             </div>
                         </div>
                     </div>
-                        
+
                     <!-- Content Row -->
                     <div class="row">
 
                         <!-- Content Column -->
                         <div class="col-lg-6 mb-4">
 
-                 
+
 
                     </div>
                 <!-- /.container-fluid -->
@@ -183,6 +190,6 @@ include("../include/connection.php");
          </div>
             <!-- End of Main Content -->
 
-         <?php 
+         <?php
          include("admin_footer.php");
          ?>

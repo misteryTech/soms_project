@@ -9,6 +9,8 @@ include("../include/connection.php");
 
 
 
+// Get student ID from session
+$student_id = $_SESSION['student_id'];
 ?>
 
 <body id="page-top">
@@ -32,9 +34,9 @@ include("../include/connection.php");
 
     <div class="container mt-5">
 
-    <h1>Calendar Activities</h1>
+    <h1>Calendar Activities <?php echo $student_id; ?></h1>
 
-    
+
         <div id="calendar"></div>
     </div>
 

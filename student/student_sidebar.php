@@ -1,12 +1,34 @@
 <?php
 
-
 include("student_header.php");
 include("../include/connection.php");
 
+// Check if student is logged in
+if (!isset($_SESSION['student_id'])) {
+    $_SESSION['error'] = "You must be logged in to view this page.";
+    header("Location: ../login.php");
+    exit();
+}
 
 // Get student ID from session
-$student_id = $_SESSION['student_id'];
+$id = $_SESSION['id'];
+$student_username = $_SESSION['username'];
+
+// Query to fetch organization name based on student ID from registrations table
+$query = "
+    SELECT r.organization_name
+    FROM registrations r
+    WHERE r.student_id = '$id'
+";
+$result = mysqli_query($connection, $query);
+
+// Fetch the organization name if available
+$organization_name = '';
+if ($result && mysqli_num_rows($result) > 0) {
+    $row = mysqli_fetch_assoc($result);
+    $organization_name = $row['organization_name'];
+}
+
 ?>
 
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
@@ -16,8 +38,7 @@ $student_id = $_SESSION['student_id'];
         <div class="sidebar-brand-icon">
             <i class="fas fa-user"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Student Org<sup><br>Manage System</sup>   <?php echo $student_id; ?>   </div>
-         
+        <div class="sidebar-brand-text mx-3">Student Org<sup><br>Manage System</sup>   <?php echo $student_username; ?>   </div>
     </a>
 
     <!-- Divider -->
@@ -76,7 +97,8 @@ $student_id = $_SESSION['student_id'];
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Organization Details:</h6>
-                <a class="collapse-item" href="student_organization_view.php?id=<?php echo $student_id; ?>">View Organization</a>
+                <a class="collapse-item" href="student_organization_view.php?id=<?php echo $organization_name; ?>">
+                    View Organization
             </div>
         </div>
     </li>

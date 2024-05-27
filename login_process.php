@@ -18,8 +18,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Verify the password
         if ($password === $stored_password) {
             // Password is correct, set the session variables
-            $_SESSION['username'] = $row['username'];   
-            
+            $_SESSION['username'] = $row['username'];
+            $_SESSION['student_id'] = $row['student_id'];
+            $_SESSION['id'] = $row['id'];
+
             // Redirect based on role
             if ($role === 'Admin') {
                 header("Location: admin/admin_dashboard.php");

@@ -5,20 +5,20 @@ include("../include/connection.php");
 
 if (isset($_GET['id'])) {
     $organization_id = mysqli_real_escape_string($connection, $_GET['id']);
-    
+
     // Fetch organization information
     $orgQuery = "SELECT * FROM organizations WHERE id = '$organization_id'";
     $orgResult = mysqli_query($connection, $orgQuery);
     $organization = mysqli_fetch_assoc($orgResult);
-    
+
     // Fetch registered students for the organization ordered by role
     $query = "
-        SELECT students.*, registrations.role 
-        FROM students 
-        INNER JOIN registrations ON students.id = registrations.student_id 
+        SELECT students.*, registrations.role
+        FROM students
+        INNER JOIN registrations ON students.id = registrations.student_id
         WHERE registrations.organization_name = '$organization_id'
-        ORDER BY 
-            CASE 
+        ORDER BY
+            CASE
                 WHEN registrations.role = 'President' THEN 1
                 WHEN registrations.role = 'Vice President' THEN 2
                 WHEN registrations.role = 'Secretary' THEN 3
@@ -93,7 +93,7 @@ if (isset($_GET['id'])) {
                                     <th>Advisor Name</th>
                                     <td><?php echo $organization['advisor_name']; ?></td>
                                 </tr>
-                               
+
                             </table>
 
                             <hr>
@@ -101,7 +101,7 @@ if (isset($_GET['id'])) {
                             <h3>List of Officers</h3>
 
                             <table class="table table-bordered" id="studentTable" width="100%" cellspacing="0">
-                           
+
                             <thead>
                                         <tr>
                                             <th>Student Id</th>
@@ -134,7 +134,7 @@ if (isset($_GET['id'])) {
 
                             <h3>List of Activities</h3>
 
-                    
+
     <?php
                             if (mysqli_num_rows($eventsResult) > 0) {
                                 echo "<div class='row'>";

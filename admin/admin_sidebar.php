@@ -1,7 +1,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
-<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="admin_dashboard.php">
     <div class="sidebar-brand-icon ">
         <i class="fas fa-user"></i>
     </div>
@@ -16,6 +16,19 @@
     <a class="nav-link" href="admin_dashboard.php">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span></a>
+
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#accountData"
+        aria-expanded="true" aria-controls="accountData">
+        <i class="fa fa-file-image-o" aria-hidden="true"></i>
+        <span>Account Details</span>
+    </a>
+    <div id="accountData" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Account:</h6>
+            <a class="collapse-item" href="account_details_page.php">Account Settings</a>
+        </div>
+    </div>
+
 </li>
 
 <!-- Divider -->
@@ -46,15 +59,16 @@
 <!-- Nav Item - Pages Collapse Menu -->
 <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-        aria-expanded="true" ar a-controls="collapseTwo">
+        aria-expanded="true" aria-controls="collapseTwo">
         <i class="fa fa-file-image-o" aria-hidden="true"></i>
         <span>Events Gallery</span>
     </a>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">z
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Events:</h6>
-            <a class="collapse-item" href="gallery_events_page.php">View Gallery</a>
             <a class="collapse-item" href="gallery_events_page_registration.php">Add Events Gallery</a>
+            <a class="collapse-item" href="gallery_events_page.php">View Gallery</a>
+            <a class="collapse-item" href="gallery_events_table_page.php">View Gallery Table</a>
             <a class="collapse-item" href="calendar_event_page.php">Calendar Of Events</a>
         </div>
     </div>
@@ -74,6 +88,7 @@
             <a class="collapse-item" href="organization_page.php">Org Student Registration</a>
             <a class="collapse-item" href="organization_information_page_view.php">Org Student Data</a>
             <a class="collapse-item" href="organization_registration_page.php">Organization Registration</a>
+            <a class="collapse-item" href="view_organization_reg_page.php">View Organization</a>
 
     </div>
 </li>
@@ -81,39 +96,26 @@
 <!-- Divider -->
 <hr class="sidebar-divider">
 
-<!-- Heading -->
-<div class="sidebar-heading">
-    Addons
-</div>
-
-<!-- Nav Item - Pages Collapse Menu -->
-<!-- Nav Item - Charts -->
 <li class="nav-item">
-    <a class="nav-link" href="organization_page.php">
-        <i class="fas fa-fw fa-chart-area"></i>
-        <span>Organization</span></a>
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#opendepartment"
+        aria-expanded="true" aria-controls="collapseUtilities">
+        <i class="fas fa-fw fa-wrench"></i>
+        <span>Department Details</span>
+    </a>
+    <div id="opendepartment" class="collapse" aria-labelledby="headingUtilities"
+        data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Department Details:</h6>
+            <a class="collapse-item" href="department_registration_page.php">Add Department</a>
+            <a class="collapse-item" href="organization_information_page_view.php">Rgistered Department</a>
+
+
+    </div>
 </li>
 
 
 
-<!-- Nav Item - Charts -->
-<li class="nav-item">
-    <a class="nav-link" href="management_event_page.php">
-        <i class="fas fa-fw fa-chart-area"></i>
-        <span>Management</span></a>
-</li>
-
-<!-- Nav Item - Tables -->
-<li class="nav-item">
-    <a class="nav-link" href="tables.html">
-        <i class="fas fa-fw fa-table"></i>
-        <span>Tables</span></a>
-</li>
-
-<!-- Divider -->
-<hr class="sidebar-divider d-none d-md-block">
-
-<!-- Sidebar Toggler (Sidebar) -->
+    <!-- Sidebar Toggler (Sidebar) -->
 <div class="text-center d-none d-md-inline">
     <button class="rounded-circle border-0" id="sidebarToggle"></button>
 </div>
