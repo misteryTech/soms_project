@@ -46,7 +46,7 @@
 <!-- Nav Item - Pages Collapse Menu -->
 <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-        aria-expanded="true" aria-controls="collapseTwo">
+        aria-expanded="true" ar a-controls="collapseTwo">
         <i class="fa fa-file-image-o" aria-hidden="true"></i>
         <span>Events Gallery</span>
     </a>

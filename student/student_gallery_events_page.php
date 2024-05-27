@@ -1,5 +1,5 @@
 <?php
-include("admin_header.php");
+include("student_header.php");
 session_start();
 include("../include/connection.php");
 
@@ -22,13 +22,13 @@ $connection->close();
 <body id="page-top">
     <!-- Page Wrapper -->
     <div id="wrapper">
-        <?php include("admin_sidebar.php"); ?>
+        <?php include("student_sidebar.php"); ?>
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
             <!-- Main Content -->
             <div id="content">
-                <?php include("admin_topbar.php"); ?>
+                <?php include("student_topbar.php"); ?>
 
                 <div class="container mt-5">
                     <h2 class="mb-4">Events Gallery</h2>
@@ -36,7 +36,7 @@ $connection->close();
                         <?php foreach ($events as $event): ?>
                             <div class="col-md-4 mb-4">
                                 <div class="card">
-                                    <img src="<?php echo $event['image_path']; ?>" class="card-img-top" alt="<?php echo $event['title']; ?>">
+                                    <img src="../admin/<?php echo $event['image_path']; ?>" class="card-img-top" alt="<?php echo $event['title']; ?>">
                                     <div class="card-body">
                                         <h5 class="card-title"><?php echo $event['title']; ?></h5>
                                     </div>
@@ -87,7 +87,7 @@ $connection->close();
             </div>
             <!-- End of Main Content -->
 
-            <?php include("admin_footer.php"); ?>
+            <?php include("student_footer.php"); ?>
         </div>
     </div>
     <!-- End of Page Wrapper -->

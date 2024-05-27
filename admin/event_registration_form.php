@@ -1,10 +1,21 @@
 <?php
 session_start();
+   // Database connection parameters
+   $servername = "localhost";
+   $username = "root";
+   $password = "";
+   $dbname = "soms_db";
+
+   // Create connection
+   $conn = new mysqli($servername, $username, $password, $dbname);
+
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $title = htmlspecialchars($_POST['title']);
-    $description = htmlspecialchars($_POST['description']);
-    $date = htmlspecialchars($_POST['date']);
+    $title = mysqli_real_escape_string($conn, $_POST['title']);
+    $description = mysqli_real_escape_string($conn, $_POST['description']);
+    $date = mysqli_real_escape_string($conn, $_POST['date']);
+    $organization_id = mysqli_real_escape_string($conn, $_POST['organizer']); // Assuming this field exists in your form
 
     // Handling file upload
     $target_dir = "uploads/"; // Absolute path to the target directory
@@ -50,25 +61,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // If everything is ok, try to upload file
     } else {
         if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-            // Database connection parameters
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "soms_db";
-
-            // Create connection
-            $conn = new mysqli($servername, $username, $password, $dbname);
-
+         
             // Check connection
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
             }
 
-            $sql = "INSERT INTO events (title, description, date, image_path) VALUES (?, ?, ?, ?)";
+            $sql = "INSERT INTO events (title, description, date, image_path, organization_id) VALUES (?, ?, ?, ?, ?)";
             $stmt = $conn->prepare($sql);
 
             if ($stmt) {
-                $stmt->bind_param("ssss", $title, $description, $date, $target_file);
+                $stmt->bind_param("ssssi", $title, $description, $date, $target_file, $organization_id);
 
                 if ($stmt->execute()) {
                     $_SESSION['message'] = "Event registered successfully";

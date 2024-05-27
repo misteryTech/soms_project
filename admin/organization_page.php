@@ -7,7 +7,7 @@ $query = "SELECT id, first_name, last_name FROM students";
 $result = mysqli_query($connection, $query);
 
 // Fetch organization names that haven't been registered yet
-$orgQuery = "SELECT DISTINCT organization_name FROM organizations";
+$orgQuery = "SELECT DISTINCT organization_name,id FROM organizations";
 $orgResult = mysqli_query($connection, $orgQuery);
 
 
@@ -80,7 +80,7 @@ $orgResult = mysqli_query($connection, $orgQuery);
                                 <?php
                                 // Populate the dropdown with organization names
                                 while ($row = mysqli_fetch_assoc($orgResult)) {
-                                    echo "<option value='" . $row['organization_name'] . "'>" . $row['organization_name'] . "</option>";
+                                    echo "<option value='" . $row['id'] . "'>" . $row['organization_name'] . "</option>";
                                 }
                                 ?>
                             </select>

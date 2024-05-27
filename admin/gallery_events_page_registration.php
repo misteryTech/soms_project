@@ -1,6 +1,3 @@
-
-
-
 <?php
 include("admin_header.php");
 session_start();
@@ -18,8 +15,18 @@ if ($result->num_rows > 0) {
     }
 }
 
-$connection->close();
+// Fetch organizer names from the organizations table
+$orgSql = "SELECT id, organization_name, advisor_name FROM organizations";
+$orgResult = $connection->query($orgSql);
 
+$organizers = [];
+if ($orgResult->num_rows > 0) {
+    while ($orgRow = $orgResult->fetch_assoc()) {
+        $organizers[$orgRow['id']] = $orgRow['organization_name'];
+    }
+}
+
+$connection->close();
 
 ?>
 
@@ -62,6 +69,15 @@ $connection->close();
             <div class="form-group">
                 <label for="date">Event Date</label>
                 <input type="date" class="form-control" id="date" name="date" required>
+            </div>
+            <div class="form-group">
+                <label for="organizer">Organizer</label>
+                <select class="form-control" id="organizer" name="organizer" required>
+                    <option value="" disabled selected>Select organizer</option>
+                    <?php foreach ($organizers as $orgId => $organizerName): ?>
+                        <option value="<?php echo $orgId; ?>"><?php echo $organizerName; ?></option>
+                    <?php endforeach; ?>
+                </select>
             </div>
             <div class="form-group">
                 <label for="image">Event Image</label>

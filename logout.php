@@ -1,9 +1,10 @@
-<?php 
-  include("../include/connection.php");
-   
-    session_start();
+<?php
+session_start(); // Start or resume the session
 
-    session_destroy();
+// Destroy the session
+session_destroy();
 
-   header("location: login.php");
-  ?>
+// Redirect to the login page
+header("Location: login.php");
+exit(); // Exit the script to ensure the redirection occurs
+?>

@@ -1,7 +1,6 @@
 <?php
 include("admin_header.php");
 session_start();
-
 include("../include/connection.php");
 ?>
 
@@ -27,9 +26,6 @@ include("../include/connection.php");
     <h2>Organization Registration Form</h2>
 
     <?php
-    // Start or resume session
-
-
     // Check for success or error messages in session
     if (isset($_SESSION['success'])) {
         echo "<div class='alert alert-success'>" . $_SESSION['success'] . "</div>";
@@ -42,22 +38,27 @@ include("../include/connection.php");
     }
     ?>
 
-    <form action="process_code/process_organization_registration.php" method="POST">
+    <form action="process_code/process_organization_registration.php" method="POST" enctype="multipart/form-data">
         <div class="form-group">
             <label for="organizationName">Organization Name</label>
             <input type="text" class="form-control" id="organizationName" name="organization_name" required>
         </div>
-        <div class="form-group">
-            <label for="department">Department</label>
-            <select class="form-control" id="department" name="department" required>
-                <option value="">Select Department</option>
-                <option value="Computer Science">Computer Science</option>
-                <option value="Engineering">Engineering</option>
-                <option value="Business">Business</option>
-                <option value="Humanities">Humanities</option>
-                <!-- Add more departments as needed -->
-            </select>
-        </div>
+            <div class="form-group">
+                <label for="department">Department</label>
+
+                <select class="form-control" id="department" name="department" required>
+                <?php
+                    include("../include/connection.php");   
+
+                    $mysqli_query_department =  mysqli_query($connection,"SELECT * FROM DEPARTMENT");
+  
+                          while ($row = mysqli_fetch_assoc($mysqli_query_department)) {
+                            echo "<option value='" . $row['department_name'] . "'>" . $row['department_name'] . "</option>";
+                                    }
+                ?>
+        
+                </select>
+            </div>
         <div class="form-group">
             <label for="advisorName">Advisor Name</label>
             <input type="text" class="form-control" id="advisorName" name="advisor_name" required>
@@ -65,6 +66,10 @@ include("../include/connection.php");
         <div class="form-group">
             <label for="contactEmail">Contact Email</label>
             <input type="email" class="form-control" id="contactEmail" name="contact_email" required>
+        </div>
+        <div class="form-group">
+            <label for="organizationLogo">Organization Logo</label>
+            <input type="file" class="form-control-file" id="organizationLogo" name="organization_logo" required>
         </div>
         <button type="submit" class="btn btn-primary">Register</button>
     </form>
@@ -75,7 +80,6 @@ include("../include/connection.php");
 
 
         </div>
-
 
         <!-- End of Content Wrapper -->
     </div>

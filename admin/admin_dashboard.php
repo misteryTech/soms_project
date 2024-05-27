@@ -3,6 +3,11 @@
 
 <?php 
 include("admin_header.php");
+
+include("../include/connection.php");
+
+// Check if student is logged in
+
 ?>
 
 <body id="page-top">
@@ -48,11 +53,20 @@ include("admin_header.php");
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                                                    <?php
+                                                        $query= mysqli_query($connection,"SELECT * FROM STUDENTS");
+
+                                                        $count_row_student = mysqli_num_rows($query);
+                                                        
+                                                        echo $count_row_student;
+                                                    ?>
+
+                                                    
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">Students</div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                            <i class="fas fa-user fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -66,11 +80,22 @@ include("admin_header.php");
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                            <?php
+                                                        $query= mysqli_query($connection,"SELECT * FROM organizations");
+
+                                                        $count_row_organization = mysqli_num_rows($query);
+                                                        
+                                                        echo $count_row_organization    ;
+                                                    ?>
+
+
                                                 </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                Organization
+                                            </div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                            <i class="fas fa-building fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -84,10 +109,20 @@ include("admin_header.php");
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                            <?php
+                                                        $query= mysqli_query($connection,"SELECT * FROM registrations");
+
+                                                        $count_row_registrations = mysqli_num_rows($query);
+                                                        
+                                                        echo $count_row_registrations    ;
+                                                    ?>
+
+
+
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"></div>
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">Events</div>
                                                 </div>
                                                 <div class="col">
                                                     <div class="progress progress-sm mr-2">
@@ -113,8 +148,15 @@ include("admin_header.php");
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                                                     <?php
+                                                        $query= mysqli_query($connection,"SELECT * FROM events");
+
+                                                        $count_row_events = mysqli_num_rows($query);
+                                                        
+                                                        echo $count_row_events    ;
+                                                    ?>
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">Registratered Organization</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -133,12 +175,14 @@ include("admin_header.php");
 
                  
 
-                </div>
+                    </div>
                 <!-- /.container-fluid -->
 
+                </div>
             </div>
+         </div>
             <!-- End of Main Content -->
 
          <?php 
-         include("admin_footer.php")
+         include("admin_footer.php");
          ?>

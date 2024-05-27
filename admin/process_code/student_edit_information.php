@@ -1,37 +1,50 @@
 <?php
-include("../../include/connection.php");
 session_start();
+include("../../include/connection.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Check if all required fields are filled
-    if (isset($_POST['student_id']) && isset($_POST['edit_first_name']) && isset($_POST['edit_last_name']) && isset($_POST['edit_email']) && isset($_POST['edit_phone'])) {
-        $student_id = $_POST['student_id'];
-        $edit_first_name = $_POST['edit_first_name'];
-        $edit_last_name = $_POST['edit_last_name'];
-        $edit_email = $_POST['edit_email'];
-        $edit_phone = $_POST['edit_phone'];
+    $student_id = mysqli_real_escape_string($connection, $_POST['student_id']);
+    $username = mysqli_real_escape_string($connection, $_POST['edit_username']);
+    $first_name = mysqli_real_escape_string($connection, $_POST['edit_first_name']);
+    $last_name = mysqli_real_escape_string($connection, $_POST['edit_last_name']);
+    $dob = mysqli_real_escape_string($connection, $_POST['edit_dob']);
+    $gender = mysqli_real_escape_string($connection, $_POST['edit_gender']);
+    $email = mysqli_real_escape_string($connection, $_POST['edit_email']);
+    $phone = mysqli_real_escape_string($connection, $_POST['edit_phone']);
+    $street = mysqli_real_escape_string($connection, $_POST['edit_street']);
+    $barangay = mysqli_real_escape_string($connection, $_POST['edit_barangay']);
+    $municipality = mysqli_real_escape_string($connection, $_POST['edit_municipality']);
+    $province = mysqli_real_escape_string($connection, $_POST['edit_province']);
+    $year = mysqli_real_escape_string($connection, $_POST['edit_year']);
+    $section = mysqli_real_escape_string($connection, $_POST['edit_section']);
+    $course = mysqli_real_escape_string($connection, $_POST['edit_course']);
 
-        // Update student information in the database
-        $update_query = "UPDATE students SET first_name='$edit_first_name', last_name='$edit_last_name', email='$edit_email', phone='$edit_phone' WHERE id='$student_id'";
-        $update_result = mysqli_query($connection, $update_query);
+    $query = "UPDATE students SET 
+        username='$username', 
+        first_name='$first_name', 
+        last_name='$last_name', 
+        dob='$dob', 
+        gender='$gender', 
+        email='$email', 
+        phone='$phone', 
+        street='$street', 
+        barangay='$barangay', 
+        municipality='$municipality', 
+        province='$province', 
+        year='$year', 
+        section='$section', 
+        course='$course' 
+        WHERE id='$student_id'";
 
-        if ($update_result) {
-            $_SESSION['success'] = "Student information updated successfully!";
-            header("Location:  ../student_information_page_data.php"); // Redirect to the page where student records are displayed
-            exit();
-        } else {
-            $_SESSION['error'] = "Failed to update student information!";
-            header("Location:  ../student_information_page_data.php"); // Redirect to the page where student records are displayed
-            exit();
-        }
+    if (mysqli_query($connection, $query)) {
+        $_SESSION['success'] = "Student information updated successfully!";
     } else {
-        $_SESSION['error'] = "All fields are required!";
-        header("Location:  ../student_information_page_data.php"); // Redirect to the page where student records are displayed
-        exit();
+        $_SESSION['error'] = "Error: " . $query . "<br>" . mysqli_error($connection);
     }
-} else {
-    // Redirect to index page if accessed directly without POST request
-    header("Location: ../student_information_page_data.php");
+
+    header("Location: ../student_information_page_data.php"); // Change this to the appropriate page
     exit();
 }
+
+mysqli_close($connection);
 ?>
